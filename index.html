@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestra Amistad - Multiverso</title>
+    <style>
+        .mode-dark { --bg-color: #000000; }
+        .mode-light { --bg-color: #ffffff; }
+
+        body, html {
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            overflow: hidden;
+            background-color: #000;
+            transition: background-color 0.8s ease;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        #effect-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 1;
+        }
+
+        .falling {
+            position: absolute;
+            animation: fall linear forwards;
+            user-select: none;
+        }
+
+        /* --- FONDOS --- */
+        .mode-brother {
+            background: linear-gradient(-45deg, #4b0082, #800000, #1a0033, #ff0000);
+            background-size: 400% 400%;
+            animation: gradient-flow 8s ease infinite !important;
+        }
+        .mode-chainsaw { background-color: #2a0000 !important; }
+        .mode-magic { background-color: #000a1a !important; }
+        .mode-final { background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%) !important; }
+
+        .slider-container {
+            position: relative; z-index: 10;
+            display: flex; width: 100vw; height: 100vh;
+            overflow-x: auto; 
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+        }
+        .slider-container::-webkit-scrollbar { display: none; }
+
+        .slide {
+            flex: 0 0 100vw; height: 100vh;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            scroll-snap-align: center;
+            scroll-snap-stop: always;
+        }
+
+        .letter-card {
+            width: 80%; max-width: 350px; padding: 25px;
+            background-color: #fcfcfc; border: 2px solid #1a1a1a;
+            box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.2);
+            text-align: center; border-radius: 8px;
+        }
+
+        .video-sticker {
+            max-width: 100%; height: 200px; border-radius: 4px;
+            margin-bottom: 15px; object-fit: cover;
+            border: 1px solid #ddd;
+        }
+
+        .sticker-img {
+            max-width: 180px; height: auto; border-radius: 4px;
+            margin-bottom: 15px; animation: float 3s ease-in-out infinite;
+        }
+
+        .letter-text { color: #1a1a1a; line-height: 1.5; font-size: 0.95rem; }
+
+        textarea {
+            width: 100%; height: 100px; border: 2px solid #1a1a1a;
+            border-radius: 4px; margin-top: 15px; padding: 10px;
+            font-family: inherit; resize: none; box-sizing: border-box;
+        }
+
+        button {
+            margin-top: 10px; width: 100%; padding: 12px;
+            background: #1a1a1a; color: #fff; border: none;
+            border-radius: 4px; font-weight: bold; cursor: pointer;
+        }
+
+        /* Mensaje de éxito oculto al inicio */
+        #status {
+            margin-top: 10px; font-size: 0.8rem; font-weight: bold; display: none;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+    </style>
+</head>
+<body class="mode-dark">
+
+    <div id="effect-container"></div>
+
+    <div class="slider-container" id="slider">
+        
+        <div class="slide">
+            <div class="letter-card">
+                <img src="62077e7fe80df093c1c6ecc022296f47.jpg" class="sticker-img">
+                <div class="letter-text">
+                    <p>Quiero que nuestra amistad sea como la de <b>Gojo y Geto</b>...</p>
+                    <p>Pero no quiero terminar como ellos.</p>
+                </div>
+            </div>
+            <p style="margin-top:20px; color:white; font-size:0.7rem; opacity:0.6;">Desliza ←</p>
+        </div>
+
+        <div class="slide">
+            <div class="letter-card">
+                <img src="af0ca10c4c096b059f5eeab35939acab.jpg" class="sticker-img">
+                <div class="letter-text">
+                    <p>Quiero que seamos como <b>Todo e Itadori</b>.</p>
+                    <p>Porque no somos solo amigos, somos <b>"Besto Friendo"</b>.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="letter-card">
+                <img src="bfe1740466eb41c35169f698bebd6118.jpg" class="sticker-img">
+                <div class="letter-text">
+                    <p>Seamos como <b>Denji y Power</b>.</p>
+                    <p>Viviendo en un caos absoluto, pero siempre cuidándonos.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="letter-card">
+                <video class="video-sticker" autoplay loop muted playsinline>
+                    <source src="_harrypotter _hermionegranger _gif _fyp _harmione(MP4)~2.mp4" type="video/mp4">
+                </video>
+                <div class="letter-text">
+                    <p>Seamos como <b>Harry y Hermione</b>.</p>
+                    <p>Simplemente <b>almas gemelas en amistad</b>.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="letter-card">
+                <div class="letter-text">
+                    <p>Sobre todo, quiero que nuestra amistad sea <b>única</b>.</p>
+                    <p style="font-size: 0.8rem;">Escríbeme algo...</p>
+                </div>
+                
+                <form id="my-form" action="https://formspree.io/f/meevwkyz" method="POST">
+                    <textarea name="mensaje" id="mensaje" placeholder="Tu mensaje..." required></textarea>
+                    <button id="my-form-button">Enviar a Paco</button>
+                    <p id="status"></p>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const container = document.getElementById('effect-container');
+        const body = document.body;
+        const slider = document.getElementById('slider');
+        
+        let effectInterval;
+        let themeInterval;
+        let currentMode = -1;
+
+        // LÓGICA DE ENVÍO SIN RECARGAR PÁGINA (AJAX)
+        var form = document.getElementById("my-form");
+        
+        async function handleSubmit(event) {
+            event.preventDefault();
+            var status = document.getElementById("status");
+            var data = new FormData(event.target);
+            fetch(event.target.action, {
+                method: form.method,
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    status.innerHTML = "¡Mensaje enviado con éxito! ✨";
+                    status.style.display = "block";
+                    status.style.color = "green";
+                    form.reset();
+                } else {
+                    status.innerHTML = "Ups! Hubo un problema.";
+                    status.style.display = "block";
+                    status.style.color = "red";
+                }
+            }).catch(error => {
+                status.innerHTML = "Ups! Error de conexión.";
+                status.style.display = "block";
+                status.style.color = "red";
+            });
+        }
+        form.addEventListener("submit", handleSubmit);
+
+        function createFalling(content, color) {
+            const e = document.createElement('div');
+            e.classList.add('falling');
+            e.innerHTML = content;
+            e.style.left = Math.random() * 100 + 'vw';
+            e.style.fontSize = (Math.random() * 15 + 15) + 'px';
+            if(color) e.style.color = color;
+            const dur = Math.random() * 3 + 3;
+            e.style.animationDuration = dur + 's';
+            container.appendChild(e);
+            setTimeout(() => e.remove(), dur * 1000);
+        }
+
+        function updateEffects() {
+            const width = slider.clientWidth;
+            const index = Math.round(slider.scrollLeft / width);
+            
+            if (currentMode === index) return;
+            currentMode = index;
+
+            clearInterval(effectInterval);
+            clearInterval(themeInterval);
+            container.innerHTML = '';
+            body.className = '';
+
+            if (index === 0) {
+                body.classList.add('mode-dark');
+                effectInterval = setInterval(() => createFalling('♥'), 300);
+                themeInterval = setInterval(() => {
+                    body.classList.toggle('mode-light');
+                    body.classList.toggle('mode-dark');
+                }, 4000);
+            } 
+            else if (index === 1) {
+                body.classList.add('mode-brother');
+            } 
+            else if (index === 2) {
+                body.classList.add('mode-chainsaw');
+                effectInterval = setInterval(() => {
+                    const type = Math.random() > 0.5;
+                    createFalling(type ? '🪚' : '🩸', type ? '#888' : '#ff0000');
+                }, 250);
+            }
+            else if (index === 3) {
+                body.classList.add('mode-magic');
+                effectInterval = setInterval(() => createFalling('✨', '#ffd700'), 350);
+            }
+            else if (index === 4) {
+                body.classList.add('mode-final');
+                effectInterval = setInterval(() => createFalling('🌸', '#ffb7c5'), 250);
+            }
+        }
+
+        slider.addEventListener('scroll', updateEffects);
+        window.onload = updateEffects;
+    </script>
+</body>
+</html>
